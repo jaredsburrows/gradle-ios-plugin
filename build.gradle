@@ -1,0 +1,83 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'org.gradle.api.plugins:gradle-nexus-plugin:0.7.1'
+    }
+}
+
+group = 'burrows.apps.ios'
+version = '0.0.1'
+
+apply plugin: 'groovy'
+apply plugin: 'maven'
+apply plugin: 'nexus'
+//apply plugin: 'idea'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    repositories {
+        jcenter()
+    }
+
+    compile gradleApi()
+    compile localGroovy()
+
+    testCompile 'junit:junit:4.11'
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: uri('../repo'))
+        }
+    }
+}
+
+//install {
+//    repositories.mavenInstaller {
+//        pom.artifactId = 'gradle'
+//    }
+//}
+//
+//uploadArchives {
+//    repositories.mavenDeployer {
+//        pom.artifactId = 'gradle'
+//    }
+//}
+//
+//modifyPom {
+//    project {
+//        name 'Gradle iOS Plugin'
+//        description "A Gradle plugin for iOS"
+//        url 'https://github.com/jaredsburrows/gradle-ios-plugin'
+//        inceptionYear '2014'
+//
+//        scm {
+//            url 'https://github.com/jaredsburrows/gradle-ios-plugin'
+//            connection 'scm:git:git://github.com/jaredsburrows/gradle-ios-plugin.git'
+//            developerConnection 'scm:git:ssh://git@github.com:jaredsburrows/gradle-ios-plugin.git'
+//        }
+//
+//        licenses {
+//            license {
+//                name 'The Apache Software License, Version 2.0'
+//                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+//                distribution 'repo'
+//            }
+//        }
+//
+//        developers {
+//            developer {
+//                id 'jaredsburrows'
+//                name 'Jared Burrows'
+//                email 'jaredsburrows@gmail.com'
+//            }
+//        }
+//    }
+//}
